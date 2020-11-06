@@ -10,6 +10,7 @@
   "dependencies": {
     "amfe-flexible": "^2.2.1",
     "core-js": "^3.6.5",
+    "jquery": "^3.5.1",
     "postcss-pxtorem": "^5.1.1",
     "stylus": "^0.54.8",
     "stylus-loader": "^3.0.2",

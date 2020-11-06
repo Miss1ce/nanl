@@ -21,14 +21,13 @@ module.exports = {
     ],
     // 全局引用jquery 
     configureWebpack: {
-        plugins: [
-            new webpack.ProvidePlugin({
-                $: 'jquery',
-                jQuery: 'jquery',
-                'window.jQuery': 'jquery',
-                Popper: ['popper.js', 'default']
-            })
-        ]
+      plugins: [
+        new webpack.ProvidePlugin({
+              $:"jquery",
+              jQuery:"jquery",
+              "windows.jQuery":"jquery"
+          })
+      ]
     },
     css: {
         loaderOptions: {

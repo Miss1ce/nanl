@@ -5,6 +5,7 @@ import store from "./store";
 // eslint-disable-next-line 
 import 'amfe-flexible';
 
+
 router.beforeEach((to, from, next) => {
   /* 路由发生变化修改页面title */
   if (to.meta.title) {
