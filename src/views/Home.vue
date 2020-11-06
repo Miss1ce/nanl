@@ -12,8 +12,8 @@
             </div>
         </div>
         <div class="mainimg">
-          <div class="overhide" style="overflow:hidden;">
-              <a href="javascript:void(0)" @click="goAnchor('#nextid')" class="gonextone"></a>
+          <div class="overhide" @click="goAnchor('#nextid')" style="overflow:hidden;">
+              <a href="javascript:void(0)" class="gonextone"></a>
           </div>
         </div>
         <div id="nextid" class="nextid">
