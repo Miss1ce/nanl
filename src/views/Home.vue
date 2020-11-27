@@ -80,7 +80,9 @@
       <p>
         我凝望着他，在心中迅速的作着判断。其实我心里已经大致得出结论，但为了慎重起见，我还是要问他几个问题。
       </p>
-      <p class="jieduan" ref="pronbit" @click="alertsc()">“你连续3天做的这个梦，能跟我描述一下梦境的内容吗？”</p>
+      <p class="jieduan" @click="alertsc()" v-show="!showlater">“点击查看更多”</p>
+      <div v-show="showlater">
+        <p>“你连续3天做的这个梦，能跟我描述一下梦境的内容吗？”</p>
       <p>
         出乎我的意料，蓝田宇竟然摇着头说：“我记不起来了。每次我都从那个噩梦中惊醒，但是完全记不得内容，只知道是个可怕的噩梦。”
       </p>
@@ -664,9 +666,14 @@
         啊，也请不要急着怪我——起码，我在这篇小说中已经写出了解救的方法。而且我可以负责任地告诉你，这个方法绝对管用，因为自从我把这篇小说寄出去之后，就再也没有做过什么噩梦，并且一直好好地活到了现在。
       </p>
       <p>我唯一不敢肯定的就是——有多少人会在凌晨4点19分醒来。</p>
+      </div>
     </div>
-    <div class="overlay" v-if="showimg">
-        <img src="../assets/image/3.jpg" alt="">
+    <div class="overlay" @click="showtips" v-if="showimg">
+        <div v-show="showtipst" class="tips">
+            <p>嘿嘿嘿</p>
+            <h2 @click="closeall">点我继续阅读</h2>
+        </div>
+        <img v-show="!showtipst" src="../assets/image/3.jpg" alt="">
     </div>
   </div>
 </template>
@@ -674,10 +681,12 @@
 import $ from "jquery";
 export default {
   data() {
-    return {};
+    return {
+      showimg:false,
+      showtipst:false
+    };
   },
   mounted() {
-    window.addEventListener('scroll', this.handleScrollx, true)
   },
   methods: {
     goAnchor(selector) {
@@ -685,18 +694,16 @@ export default {
       var anchor = that.$el.querySelector(selector);
       $("html,body").animate({ scrollTop: anchor.offsetTop }, 400);
     },
-    handleScrollx() {
-      let scop = this.$refs.pronbit.getBoundingClientRect().top
-      console.log(scop)
-      if(scop<=300){
-        alert("1")
-      }
-    },
+    
     alertsc(){
-      this.showimg = true
-      setInterval(() => {
-        this.showimg = false
-      }, 5000);
+        this.showimg = true
+    },
+    showtips(){
+      this.showtipst = true
+    },
+    closeall(){
+      this.showimg = false
+      this.showlater = true
     }
   },
 };
@@ -811,6 +818,25 @@ export default {
 
     p.jieduan
       color: transparent;
-      text-shadow: #111 0 0 12px;
-        
+      text-shadow: #111 0 0 8px;
+.overlay
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.6);
+  top:0; left:0;
+  display:flex;
+  align-items center;
+  justify-content center;
+  .tips
+    width:600px; height:300px;
+    background #fff;
+    padding 24px;
+    p
+      font-size 30px;
+      text-algin center
+    h2
+      font-size 30px;
+      text-align center;
+      margin-top 30px
 </style>
