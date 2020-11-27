@@ -3,11 +3,6 @@
     <div class="header">
       <div class="tpleft">
         <div class="laterpro">
-          <!-- <span>万众瞩目的人---------》</span>
-                   <div class="imgborder">
-                     <img class="lxfheaderimg" src="../assets/image/lxfheaderimg.jpg" alt="">
-                   </div>
-                   <span>《---------人的目瞩众万</span> -->
           <p>夜间温馨小故事！</p>
         </div>
       </div>
@@ -85,7 +80,7 @@
       <p>
         我凝望着他，在心中迅速的作着判断。其实我心里已经大致得出结论，但为了慎重起见，我还是要问他几个问题。
       </p>
-      <p>“你连续3天做的这个梦，能跟我描述一下梦境的内容吗？”</p>
+      <p class="jieduan" ref="pronbit" @click="alertsc()">“你连续3天做的这个梦，能跟我描述一下梦境的内容吗？”</p>
       <p>
         出乎我的意料，蓝田宇竟然摇着头说：“我记不起来了。每次我都从那个噩梦中惊醒，但是完全记不得内容，只知道是个可怕的噩梦。”
       </p>
@@ -670,6 +665,9 @@
       </p>
       <p>我唯一不敢肯定的就是——有多少人会在凌晨4点19分醒来。</p>
     </div>
+    <div class="overlay" v-if="showimg">
+        <img src="../assets/image/3.jpg" alt="">
+    </div>
   </div>
 </template>
 <script>
@@ -678,13 +676,28 @@ export default {
   data() {
     return {};
   },
-  mounted() {},
+  mounted() {
+    window.addEventListener('scroll', this.handleScrollx, true)
+  },
   methods: {
     goAnchor(selector) {
       let that = this;
       var anchor = that.$el.querySelector(selector);
       $("html,body").animate({ scrollTop: anchor.offsetTop }, 400);
     },
+    handleScrollx() {
+      let scop = this.$refs.pronbit.getBoundingClientRect().top
+      console.log(scop)
+      if(scop<=300){
+        alert("1")
+      }
+    },
+    alertsc(){
+      this.showimg = true
+      setInterval(() => {
+        this.showimg = false
+      }, 5000);
+    }
   },
 };
 </script>
@@ -791,9 +804,13 @@ export default {
 
 .nextid
     padding 20px 24px;
-    background #E1F3FE;
     p
-      font-size 28px;
+      font-size 32px;
       text-align left;
-      margin-bottom 10px
+      margin-bottom 20px
+
+    p.jieduan
+      color: transparent;
+      text-shadow: #111 0 0 12px;
+        
 </style>
